@@ -1,11 +1,16 @@
+#include <iostream>
 #include "Game.hpp"
 
 sf::Time TimePerFrame = sf::seconds(1.f / 60.f);
 
 Game::Game()
     : window(sf::VideoMode(1000, 740), "Hangman"),
-      isPaused(false)
-{}
+      isPaused(false),
+      word("test")
+{
+  window.setFramerateLimit(30);
+  manikin.move(100, 100);
+}
 
 void Game::run() {
   sf::Clock clock;
@@ -37,6 +42,8 @@ void Game::processEvents() {
       case sf::Event::Closed:
         window.close();
         break;
+      case sf::Event::TextEntered:
+        guess(static_cast<char>(event.text.unicode));
       default:
         break;
     }
@@ -50,8 +57,20 @@ void Game::update(sf::Time dt) {
 void Game::render() {
   window.clear();
 
-  // render
+  window.draw(manikin);
+  window.draw(word);
 
   window.setView(window.getDefaultView());
   window.display();
+}
+
+void Game::guess(char ch) {
+  guesses.push_back(ch);
+  if(word.exists(ch)) {
+    if(!manikin.next()) {
+      std::cout << "you lose" << std::endl;
+    }
+  } else {
+    word.reveal(ch);
+  }
 }

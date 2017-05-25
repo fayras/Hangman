@@ -2,11 +2,14 @@
 #define HANGMAN_GAME_HPP
 
 #include <SFML/Graphics.hpp>
+#include "Manikin.hpp"
+#include "Word.hpp"
 
 class Game {
   public:
     Game();
     void run();
+    void guess(char ch);
 
   private:
     void processEvents();
@@ -15,6 +18,10 @@ class Game {
 
     sf::RenderWindow window;
     bool isPaused;
+
+    Word word;
+    Manikin manikin;
+    std::vector<char> guesses;
 };
 
 
