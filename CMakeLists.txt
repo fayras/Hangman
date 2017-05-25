@@ -8,6 +8,6 @@ add_executable(Hangman ${SOURCE_FILES})
 
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake_modules")
 
-find_package(SFML REQUIRED system window graphics network audio)
+find_package(SFML REQUIRED system window graphics audio)
 include_directories(${SFML_INCLUDE_DIR})
 target_link_libraries(Hangman ${SFML_LIBRARIES})
