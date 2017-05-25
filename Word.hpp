@@ -3,8 +3,9 @@
 
 #include <SFML/Graphics/Drawable.hpp>
 #include <SFML/Graphics/Font.hpp>
+#include <SFML/Graphics/Transformable.hpp>
 
-class Word : public sf::Drawable {
+class Word : public sf::Drawable, public sf::Transformable {
   public:
     Word(const std::string &word);
     bool exists(char ch);

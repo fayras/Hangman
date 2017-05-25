@@ -10,11 +10,17 @@ Word::Word(const std::string &word)
 }
 
 void Word::draw(sf::RenderTarget &target, sf::RenderStates states) const {
+  states.transform *= getTransform();
   for(int i = 0; i < word.length(); i++) {
-    //target.draw();
+    if(word[i] != ' ') {
+      sf::RectangleShape us(sf::Vector2f(35, 2));
+      us.move(i * 50, 40);
+      target.draw(us, states);
+    }
   }
   for(const auto& r : revealed) {
     sf::Text txt(word[r], font);
+    txt.move(r * 50 + 10, 0);
     target.draw(txt, states);
   }
 }
