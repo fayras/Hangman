@@ -9,7 +9,8 @@
 class Manikin : public sf::Drawable, public sf::Transformable {
   public:
     Manikin();
-    bool next();
+    void next();
+    bool alive() const;
 
   protected:
     void draw(sf::RenderTarget &target, sf::RenderStates states) const override;

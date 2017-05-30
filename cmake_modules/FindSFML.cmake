@@ -5,7 +5,7 @@
 # -----
 #
 # When you try to locate the SFML libraries, you must specify which modules you want to use (system, window, graphics, network, audio, main).
-# If none is given, the SFML_LIBRARIES variable will be empty and you'll end up linking to nothing.
+# If none is given, the SFML_LIBRARIES variable will be empty and you'll alive up linking to nothing.
 # example:
 #   find_package(SFML COMPONENTS graphics window system) # find the graphics, window and system modules
 #

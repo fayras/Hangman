@@ -6,7 +6,7 @@ sf::Time TimePerFrame = sf::seconds(1.f / 60.f);
 Game::Game()
     : window(sf::VideoMode(1000, 740), "Hangman"),
       isPaused(false),
-      word("test abc")
+      word("Test abc")
 {
   window.setFramerateLimit(30);
   manikin.move(15, 600);
@@ -73,10 +73,14 @@ void Game::guess(char ch) {
 
   guesses.push_back(ch);
   if(word.exists(ch)) {
-    if(!manikin.next()) {
+    manikin.next();
+    if(!manikin.alive()) {
       std::cout << "you lose" << std::endl;
     }
   } else {
     word.reveal(ch);
+    if(word.finished()) {
+      std::cout << "you won" << std::endl;
+    }
   }
 }

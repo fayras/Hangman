@@ -36,8 +36,12 @@ void Manikin::draw(sf::RenderTarget &target, sf::RenderStates states) const {
   }
 }
 
-bool Manikin::next() {
-  if(attempts == 0) return false;
-  attempts -= 1;
+void Manikin::next() {
+  if(alive()) {
+    attempts--;
+  }
+}
+
+bool Manikin::alive() const {
   return attempts > 0;
 }
