@@ -13,7 +13,6 @@ class Game {
 
   private:
     void processEvents();
-    void update(sf::Time);
     void render();
 
     sf::RenderWindow window;

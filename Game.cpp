@@ -17,14 +17,8 @@ void Game::run() {
   sf::Clock clock;
   sf::Time timeSinceLastUpdate = sf::Time::Zero;
   while (window.isOpen()) {
-    processEvents();
-    timeSinceLastUpdate += clock.restart();
-    while (timeSinceLastUpdate > TimePerFrame) {
-      timeSinceLastUpdate -= TimePerFrame;
+    if(!isPaused) {
       processEvents();
-      if(!isPaused) {
-        update(TimePerFrame);
-      }
     }
     render();
   }
@@ -49,10 +43,6 @@ void Game::processEvents() {
         break;
     }
   }
-}
-
-void Game::update(sf::Time dt) {
-  // update
 }
 
 void Game::render() {

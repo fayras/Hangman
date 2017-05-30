@@ -3,7 +3,7 @@ project(Hangman)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES main.cpp Game.cpp Game.hpp Manikin.cpp Manikin.hpp Word.cpp Word.hpp)
+set(SOURCE_FILES main.cpp Game.cpp Game.hpp Manikin.cpp Manikin.hpp Word.cpp Word.hpp Letter.cpp Letter.hpp)
 add_executable(Hangman ${SOURCE_FILES})
 
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake_modules")

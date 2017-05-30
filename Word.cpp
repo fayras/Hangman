@@ -6,10 +6,9 @@
 Word::Word(std::string pWord)
     : orgWord(pWord), word(pWord), font()
 {
-  for (int i = 0; i < word.length(); ++i) {
-    word[i] = (char) std::tolower(word[i]);
-  }
+  std::transform(word.begin(), word.end(), word.begin(), ::tolower);
   font.loadFromFile("../fonts/Roboto.ttf");
+  reveal(' ');
 }
 
 void Word::draw(sf::RenderTarget &target, sf::RenderStates states) const {
