@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include "Manikin.hpp"
 #include "Word.hpp"
+#include "LetterList.hpp"
 
 class Game {
   public:
@@ -21,6 +22,7 @@ class Game {
     Word word;
     Manikin manikin;
     std::vector<char> guesses;
+    LetterList letters;
 };
 
 

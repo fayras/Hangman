@@ -1,8 +1,6 @@
 #include <iostream>
 #include "Game.hpp"
 
-sf::Time TimePerFrame = sf::seconds(1.f / 60.f);
-
 Game::Game()
     : window(sf::VideoMode(1000, 740), "Hangman"),
       isPaused(false),
@@ -10,7 +8,8 @@ Game::Game()
 {
   window.setFramerateLimit(30);
   manikin.move(15, 600);
-  word.move(500, 100);
+  word.move(500, 200);
+  letters.move(500, 400);
 }
 
 void Game::run() {
@@ -50,6 +49,7 @@ void Game::render() {
 
   window.draw(manikin);
   window.draw(word);
+  window.draw(letters);
 
   window.setView(window.getDefaultView());
   window.display();
