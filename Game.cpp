@@ -26,6 +26,7 @@ void Game::run() {
 void Game::processEvents() {
   sf::Event event;
   while (window.pollEvent(event)) {
+    //letters.handleEvent(event);
     switch (event.type) {
       case sf::Event::GainedFocus:
         isPaused = false;

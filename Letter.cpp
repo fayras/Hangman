@@ -1,14 +1,17 @@
+#include <iostream>
 #include "Letter.hpp"
 
-Letter::Letter(char ch)
-  : letter(ch), font()
+Letter::Letter(char ch, sf::Font& font)
+  : letter(ch), text(letter, font)
 {
-  font.loadFromFile("../fonts/Roboto.ttf");
+  text.setCharacterSize(45);
 }
 
 void Letter::draw(sf::RenderTarget &target, sf::RenderStates states) const {
   states.transform *= getTransform();
-  sf::Text text(letter, font);
-  text.setCharacterSize(45);
   target.draw(text, states);
+}
+
+void Letter::handleEvent(const sf::Event &event) {
+
 }
