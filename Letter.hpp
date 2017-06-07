@@ -8,17 +8,10 @@
 #include <SFML/Graphics/Text.hpp>
 #include <SFML/Window/Event.hpp>
 
-class Letter : public sf::Drawable, public sf::Transformable {
+class Letter : public sf::Text {
   public:
     Letter(char ch, sf::Font& font);
-    void handleEvent(const sf::Event &event);
-
-  protected:
-    void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
-
-  private:
-    char letter;
-    sf::Text text;
+    void handleEvent(const sf::Event &event, const sf::Transform &transform);
 };
 
 #endif //HANGMAN_LETTER_HPP

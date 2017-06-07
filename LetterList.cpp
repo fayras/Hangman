@@ -24,6 +24,6 @@ void LetterList::draw(sf::RenderTarget &target, sf::RenderStates states) const {
 
 void LetterList::handleEvent(const sf::Event &event) {
   for(Letter& l : letters) {
-    l.handleEvent(event);
+    l.handleEvent(event, getTransform());
   }
 }

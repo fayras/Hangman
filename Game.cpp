@@ -1,6 +1,8 @@
 #include <iostream>
 #include "Game.hpp"
 
+const sf::Time Game::TimePerFrame = sf::seconds(1.f/60.f);
+
 Game::Game()
     : window(sf::VideoMode(1000, 740), "Hangman"),
       isPaused(false),
@@ -16,8 +18,13 @@ void Game::run() {
   sf::Clock clock;
   sf::Time timeSinceLastUpdate = sf::Time::Zero;
   while (window.isOpen()) {
-    if(!isPaused) {
-      processEvents();
+    sf::Time dt = clock.restart();
+    timeSinceLastUpdate += dt;
+    while (timeSinceLastUpdate > TimePerFrame) {
+      timeSinceLastUpdate -= TimePerFrame;
+      if(!isPaused) {
+        processEvents();
+      }
     }
     render();
   }
@@ -26,7 +33,7 @@ void Game::run() {
 void Game::processEvents() {
   sf::Event event;
   while (window.pollEvent(event)) {
-    //letters.handleEvent(event);
+    letters.handleEvent(event);
     switch (event.type) {
       case sf::Event::GainedFocus:
         isPaused = false;

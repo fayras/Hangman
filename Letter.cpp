@@ -2,16 +2,16 @@
 #include "Letter.hpp"
 
 Letter::Letter(char ch, sf::Font& font)
-  : letter(ch), text(letter, font)
+  : sf::Text(ch, font)
 {
-  text.setCharacterSize(45);
+  setCharacterSize(45);
 }
 
-void Letter::draw(sf::RenderTarget &target, sf::RenderStates states) const {
-  states.transform *= getTransform();
-  target.draw(text, states);
-}
-
-void Letter::handleEvent(const sf::Event &event) {
-
+void Letter::handleEvent(const sf::Event &event, const sf::Transform &transform) {
+  sf::FloatRect rect = transform.transformRect(getGlobalBounds());
+  if(rect.contains(event.mouseMove.x, event.mouseMove.y)) {
+    setFillColor(sf::Color::Red);
+  } else {
+    setFillColor(sf::Color::White);
+  }
 }

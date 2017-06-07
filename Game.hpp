@@ -23,6 +23,8 @@ class Game {
     Manikin manikin;
     std::vector<char> guesses;
     LetterList letters;
+
+    static const sf::Time	TimePerFrame;
 };
 
 
