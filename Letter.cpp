@@ -2,16 +2,24 @@
 #include "Letter.hpp"
 
 Letter::Letter(char ch, sf::Font& font)
-  : sf::Text(ch, font)
+  : sf::Text(ch, font), isActive(true)
 {
   setCharacterSize(45);
 }
 
-void Letter::handleEvent(const sf::Event &event, const sf::Transform &transform) {
+void Letter::highlight() {
+  setFillColor(sf::Color::Red);
+}
+
+void Letter::unhighlight() {
+  setFillColor(sf::Color::White);
+}
+
+bool Letter::intersects(int x, int y, const sf::Transform &transform) const {
   sf::FloatRect rect = transform.transformRect(getGlobalBounds());
-  if(rect.contains(event.mouseMove.x, event.mouseMove.y)) {
-    setFillColor(sf::Color::Red);
-  } else {
-    setFillColor(sf::Color::White);
-  }
+  return rect.contains(x, y);
+}
+
+void Letter::setActive(bool active) {
+  isActive = active;
 }

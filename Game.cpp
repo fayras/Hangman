@@ -46,6 +46,10 @@ void Game::processEvents() {
         break;
       case sf::Event::TextEntered:
         guess(static_cast<char>(event.text.unicode));
+        break;
+      case sf::Event::MouseButtonPressed:
+
+        break;
       default:
         break;
     }

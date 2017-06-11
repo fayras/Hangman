@@ -11,7 +11,13 @@
 class Letter : public sf::Text {
   public:
     Letter(char ch, sf::Font& font);
-    void handleEvent(const sf::Event &event, const sf::Transform &transform);
+    bool intersects(int x, int y, const sf::Transform &transform) const;
+    void setActive(bool active);
+    void highlight();
+    void unhighlight();
+
+  private:
+    bool isActive;
 };
 
 #endif //HANGMAN_LETTER_HPP

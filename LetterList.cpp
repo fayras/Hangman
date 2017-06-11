@@ -23,7 +23,16 @@ void LetterList::draw(sf::RenderTarget &target, sf::RenderStates states) const {
 }
 
 void LetterList::handleEvent(const sf::Event &event) {
-  for(Letter& l : letters) {
-    l.handleEvent(event, getTransform());
+  if(event.type == sf::Event::MouseMoved || event.type == sf::Event::MouseButtonPressed) {
+    for(Letter& l : letters) {
+      if(l.intersects(event.mouseMove.x, event.mouseMove.y, getTransform())) {
+        l.highlight();
+        if(event.type == sf::Event::MouseButtonPressed) {
+          l.setActive(false);
+        }
+      } else {
+        l.unhighlight();
+      }
+    }
   }
 }
