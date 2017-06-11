@@ -28,6 +28,8 @@ class SceneNode : public sf::Transformable, public sf::Drawable, private sf::Non
     void onCommand(const Command& command);
     virtual unsigned int getCategory() const;
 
+    void update();
+
   private:
     virtual void updateCurrent();
     void updateChildren();
