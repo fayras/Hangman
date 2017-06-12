@@ -1,22 +1,20 @@
 #include <iostream>
 #include "Letter.hpp"
 
-Letter::Letter(char ch, sf::Font& font)
-  : sf::Text(ch, font), isActive(true)
-{
-  setCharacterSize(45);
-}
+Letter::Letter(char ch, const sf::Texture& texture, const sf::IntRect& textureRect)
+  : SpriteNode(texture, textureRect), letter(ch)
+{}
 
 void Letter::highlight() {
-  setFillColor(sf::Color::Red);
+
 }
 
 void Letter::unhighlight() {
-  setFillColor(sf::Color::White);
+
 }
 
-bool Letter::intersects(int x, int y, const sf::Transform &transform) const {
-  sf::FloatRect rect = transform.transformRect(getGlobalBounds());
+bool Letter::intersects(int x, int y) const {
+  sf::FloatRect rect = getWorldTransform().transformRect(sprite.getGlobalBounds());
   return rect.contains(x, y);
 }
 

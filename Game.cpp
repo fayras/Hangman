@@ -24,6 +24,7 @@ void Game::run() {
       timeSinceLastUpdate -= TimePerFrame;
       if(!isPaused) {
         processEvents();
+        update();
       }
     }
     render();
@@ -33,7 +34,6 @@ void Game::run() {
 void Game::processEvents() {
   sf::Event event;
   while (window.pollEvent(event)) {
-    letters.handleEvent(event);
     switch (event.type) {
       case sf::Event::GainedFocus:
         isPaused = false;
@@ -47,13 +47,18 @@ void Game::processEvents() {
       case sf::Event::TextEntered:
         guess(static_cast<char>(event.text.unicode));
         break;
-      case sf::Event::MouseButtonPressed:
-
-        break;
       default:
         break;
     }
   }
+}
+
+void Game::update() {
+  while(!commandQueue.empty()) {
+    sceneGraph.onCommand(commandQueue.pop());
+  }
+
+  sceneGraph.update();
 }
 
 void Game::render() {

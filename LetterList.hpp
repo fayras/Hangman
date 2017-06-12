@@ -6,17 +6,13 @@
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Window/Event.hpp>
 #include "Letter.hpp"
+#include "SceneNode.hpp"
 
-class LetterList : public sf::Drawable, public sf::Transformable {
+class LetterList : public SceneNode {
   public:
     LetterList();
-    void handleEvent(const sf::Event &event);
-
-  protected:
-    void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
 
   private:
-    std::vector<Letter> letters;
     sf::Font font;
 };
 

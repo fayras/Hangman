@@ -7,17 +7,19 @@
 #include <SFML/Graphics/Font.hpp>
 #include <SFML/Graphics/Text.hpp>
 #include <SFML/Window/Event.hpp>
+#include "SpriteNode.hpp"
 
-class Letter : public sf::Text {
+class Letter : public SpriteNode {
   public:
-    Letter(char ch, sf::Font& font);
-    bool intersects(int x, int y, const sf::Transform &transform) const;
+    Letter(char ch, const sf::Texture& texture, const sf::IntRect& textureRect);
+    bool intersects(int x, int y) const;
     void setActive(bool active);
     void highlight();
     void unhighlight();
 
   private:
     bool isActive;
+    char letter;
 };
 
 #endif //HANGMAN_LETTER_HPP
