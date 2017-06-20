@@ -14,7 +14,8 @@ namespace Textures
 {
   enum ID
   {
-    ALPHABET
+    ALPHABET,
+    MANIKIN,
   };
 }
 
@@ -22,7 +23,7 @@ namespace Fonts
 {
   enum ID
   {
-    Main,
+    MAIN,
   };
 }
 
@@ -38,7 +39,11 @@ namespace Music
 {
   enum ID
   {
-
+    TITLE,
+    GAME,
+    WIN,
+    LOSE,
+    GUESS
   };
 }
 

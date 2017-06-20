@@ -21,12 +21,15 @@ class Game {
     void update();
     void render();
 
+    void setupScene();
+
     sf::RenderWindow window;
     bool isPaused;
 
     SceneNode sceneGraph;
     CommandQueue commandQueue;
     TextureHolder textures;
+    FontHolder fonts;
 
     std::vector<char> guesses;
 

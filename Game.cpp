@@ -10,17 +10,7 @@ Game::Game()
   window.setFramerateLimit(30);
   textures.load(Textures::ID::ALPHABET, "../assets/textures/alphabet.png");
 
-  SceneNode::Ptr letters(new LetterList(textures));
-  letters->move(500, 400);
-  sceneGraph.attachChild(std::move(letters));
-
-  SceneNode::Ptr manikin(new Manikin());
-  manikin->move(15, 600);
-  sceneGraph.attachChild(std::move(manikin));
-
-  SceneNode::Ptr word(new Word("test"));
-  word->move(500, 200);
-  sceneGraph.attachChild(std::move(word));
+  setupScene();
 }
 
 void Game::run() {
@@ -86,4 +76,18 @@ void Game::guess(char ch) {
 
   guesses.push_back(ch);
 
+}
+
+void Game::setupScene() {
+  SceneNode::Ptr letters(new LetterList(textures));
+  letters->move(500, 400);
+  sceneGraph.attachChild(std::move(letters));
+
+  SceneNode::Ptr manikin(new Manikin());
+  manikin->move(15, 600);
+  sceneGraph.attachChild(std::move(manikin));
+
+  SceneNode::Ptr word(new Word("test"));
+  word->move(500, 200);
+  sceneGraph.attachChild(std::move(word));
 }
