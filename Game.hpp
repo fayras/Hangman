@@ -7,6 +7,8 @@
 #include "LetterList.hpp"
 #include "SceneNode.hpp"
 #include "CommandQueue.hpp"
+#include "ResourceIdentifiers.hpp"
+#include "ResourceHolder.hpp"
 
 class Game {
   public:
@@ -24,11 +26,9 @@ class Game {
 
     SceneNode sceneGraph;
     CommandQueue commandQueue;
+    TextureHolder textures;
 
-    Word word;
-    Manikin manikin;
     std::vector<char> guesses;
-    LetterList letters;
 
     static const sf::Time	TimePerFrame;
 };

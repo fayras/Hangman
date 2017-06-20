@@ -5,15 +5,13 @@
 #include <SFML/Graphics/Shape.hpp>
 #include <vector>
 #include <memory>
+#include "SceneNode.hpp"
 
-class Manikin : public sf::Drawable, public sf::Transformable {
+class Manikin : public SceneNode {
   public:
     Manikin();
     void next();
     bool alive() const;
-
-  protected:
-    void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
 
   private:
     std::vector<std::unique_ptr<sf::Shape>> parts;

@@ -5,13 +5,22 @@ const sf::Time Game::TimePerFrame = sf::seconds(1.f/60.f);
 
 Game::Game()
     : window(sf::VideoMode(1000, 740), "Hangman"),
-      isPaused(false),
-      word("Test abc")
+      isPaused(false)
 {
   window.setFramerateLimit(30);
-  manikin.move(15, 600);
-  word.move(500, 200);
-  letters.move(500, 400);
+  textures.load(Textures::ID::ALPHABET, "../assets/textures/alphabet.png");
+
+  SceneNode::Ptr letters(new LetterList(textures));
+  letters->move(500, 400);
+  sceneGraph.attachChild(std::move(letters));
+
+  SceneNode::Ptr manikin(new Manikin());
+  manikin->move(15, 600);
+  sceneGraph.attachChild(std::move(manikin));
+
+  SceneNode::Ptr word(new Word("test"));
+  word->move(500, 200);
+  sceneGraph.attachChild(std::move(word));
 }
 
 void Game::run() {
@@ -63,12 +72,9 @@ void Game::update() {
 
 void Game::render() {
   window.clear();
-
-  window.draw(manikin);
-  window.draw(word);
-  window.draw(letters);
-
   window.setView(window.getDefaultView());
+
+  window.draw(sceneGraph);
   window.display();
 }
 
@@ -79,15 +85,5 @@ void Game::guess(char ch) {
   }
 
   guesses.push_back(ch);
-  if(word.exists(ch)) {
-    manikin.next();
-    if(!manikin.alive()) {
-      std::cout << "you lose" << std::endl;
-    }
-  } else {
-    word.reveal(ch);
-    if(word.finished()) {
-      std::cout << "you won" << std::endl;
-    }
-  }
+
 }

@@ -1,7 +1,6 @@
 #include "SceneNode.hpp"
 
 #include "Command.hpp"
-#include <algorithm>
 #include <cassert>
 
 SceneNode::SceneNode()

@@ -5,15 +5,13 @@
 #include <SFML/Graphics/Transformable.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Window/Event.hpp>
-#include "Letter.hpp"
 #include "SceneNode.hpp"
+#include "ResourceIdentifiers.hpp"
+
 
 class LetterList : public SceneNode {
   public:
-    LetterList();
-
-  private:
-    sf::Font font;
+    explicit LetterList(const TextureHolder& textures);
 };
 
 #endif //HANGMAN_LETTERLIST_HPP

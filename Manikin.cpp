@@ -29,13 +29,6 @@ Manikin::Manikin()
   attempts = parts.size();
 }
 
-void Manikin::draw(sf::RenderTarget &target, sf::RenderStates states) const {
-  states.transform *= getTransform();
-  for(int i = 0; i < parts.size() - attempts; i++) {
-    target.draw(*(parts[i]), states);
-  }
-}
-
 void Manikin::next() {
   if(alive()) {
     attempts--;
