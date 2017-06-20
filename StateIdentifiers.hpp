@@ -1,0 +1,10 @@
+#ifndef HANGMAN_STATEIDENTIFIERS_HPP
+#define HANGMAN_STATEIDENTIFIERS_HPP
+
+namespace States {
+  enum ID {
+    NONE
+  };
+}
+
+#endif //HANGMAN_STATEIDENTIFIERS_HPP

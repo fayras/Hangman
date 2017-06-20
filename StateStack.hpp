@@ -1,6 +1,10 @@
 #ifndef HANGMAN_STATESTACK_HPP
 #define HANGMAN_STATESTACK_HPP
 
+#include "State.hpp"
+#include "StateIdentifiers.hpp"
+#include "ResourceIdentifiers.hpp"
+
 #include <SFML/System/NonCopyable.hpp>
 #include <SFML/System/Time.hpp>
 
@@ -24,7 +28,7 @@ class StateStack : private sf::NonCopyable {
 
     void update(sf::Time dt);
     void draw() const;
-    void handleEvent(const sf::event& event);
+    void handleEvent(const sf::Event& event);
 
     template<typename T>
     void registerState(States::ID stateID);
@@ -55,7 +59,7 @@ template <typename T>
 void StateStack::registerState(States::ID id) {
   factory[id] = [this] () {
     return State::Ptr(new T(*this, context));
-  }
+  };
 }
 
 #endif //HANGMAN_STATESTACK_HPP
