@@ -16,6 +16,7 @@ namespace Textures
   {
     ALPHABET,
     MANIKIN,
+    TITLE_BG,
   };
 }
 

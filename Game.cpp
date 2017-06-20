@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Game.hpp"
 #include "GameState.hpp"
+#include "TitleState.hpp"
 
 const sf::Time Game::TimePerFrame = sf::seconds(1.f/60.f);
 
@@ -11,9 +12,10 @@ Game::Game()
 {
   window.setFramerateLimit(30);
   textures.load(Textures::ID::ALPHABET, "../assets/textures/alphabet.png");
+  textures.load(Textures::ID::TITLE_BG, "../assets/textures/title_bg.jpg");
 
   registerStates();
-  stateStack.push(States::ID::GAME);
+  stateStack.push(States::ID::TITLE);
 }
 
 void Game::run() {
@@ -69,5 +71,6 @@ void Game::render() {
 }
 
 void Game::registerStates() {
+  stateStack.registerState<TitleState>(States::ID::TITLE);
   stateStack.registerState<GameState>(States::ID::GAME);
 }
