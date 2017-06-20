@@ -9,29 +9,26 @@
 #include "CommandQueue.hpp"
 #include "ResourceIdentifiers.hpp"
 #include "ResourceHolder.hpp"
+#include "StateStack.hpp"
 
 class Game {
   public:
     Game();
     void run();
-    void guess(char ch);
 
   private:
     void processEvents();
-    void update();
+    void update(sf::Time dt);
     void render();
 
-    void setupScene();
+    void registerStates();
 
-    sf::RenderWindow window;
     bool isPaused;
 
-    SceneNode sceneGraph;
-    CommandQueue commandQueue;
+    sf::RenderWindow window;
+    StateStack stateStack;
     TextureHolder textures;
     FontHolder fonts;
-
-    std::vector<char> guesses;
 
     static const sf::Time	TimePerFrame;
 };

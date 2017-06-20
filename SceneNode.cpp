@@ -53,18 +53,18 @@ unsigned int SceneNode::getCategory() const {
   return Category::SCENE;
 }
 
-void SceneNode::update() {
-  updateCurrent();
-  updateChildren();
+void SceneNode::update(sf::Time dt) {
+  updateCurrent(dt);
+  updateChildren(dt);
 }
 
-void SceneNode::updateCurrent() {
+void SceneNode::updateCurrent(sf::Time dt) {
   // do nothing by default
 }
 
-void SceneNode::updateChildren() {
+void SceneNode::updateChildren(sf::Time dt) {
   for(Ptr& child : children) {
-    child->update();
+    child->update(dt);
   }
 }
 

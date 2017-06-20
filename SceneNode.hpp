@@ -28,12 +28,12 @@ class SceneNode : public sf::Transformable, public sf::Drawable, private sf::Non
     void onCommand(const Command& command);
     virtual unsigned int getCategory() const;
 
-    void update();
+    void update(sf::Time dt);
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
   protected:
-    virtual void updateCurrent();
-    void updateChildren();
+    virtual void updateCurrent(sf::Time dt);
+    void updateChildren(sf::Time dt);
 
     virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
     void drawChildren(sf::RenderTarget& target, sf::RenderStates states) const;
