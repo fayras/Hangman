@@ -4,8 +4,7 @@
 
 TitleState::TitleState(StateStack &stack, State::Context context)
     : State(stack, context), background(context.textures->get(Textures::ID::TITLE_BG))
-{
-}
+{}
 
 void TitleState::draw() {
   sf::RenderWindow& window = *getContext().window;
