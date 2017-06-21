@@ -32,6 +32,7 @@ namespace gui {
       virtual void activate();
       virtual void deactivate();
       virtual void handleEvent(const sf::Event& event);
+      virtual sf::FloatRect getBounds() const override ;
 
     private:
       virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;

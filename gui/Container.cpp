@@ -32,6 +32,17 @@ void gui::Container::handleEvent(const sf::Event &event) {
         children[selectedChild]->activate();
       }
     }
+  } else if(event.type == sf::Event::MouseMoved) {
+    auto transform = getTransform();
+    for(std::size_t i = 0; i < children.size(); i++) {
+      const auto& child = children[i];
+      if(transform.transformRect(child->getBounds()).contains(event.mouseMove.x, event.mouseMove.y)) {
+        child->select();
+        selectedChild = i;
+      } else {
+        child->deselect();
+      }
+    }
   }
 }
 

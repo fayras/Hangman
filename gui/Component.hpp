@@ -26,6 +26,7 @@ namespace gui {
       bool active() const;
       virtual void activate();
       virtual void deactivate();
+      virtual sf::FloatRect getBounds() const;
 
       virtual void handleEvent(const sf::Event& event) = 0;
 

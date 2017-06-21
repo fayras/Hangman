@@ -3,7 +3,6 @@
 #include <SFML/Graphics/RenderStates.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
 
-
 gui::Button::Button(State::Context context)
   : callback(),
     normalTexture(context.textures->get(Textures::ID::BUTTON_NORMAL)),
@@ -75,4 +74,8 @@ void gui::Button::draw(sf::RenderTarget &target, sf::RenderStates states) const 
   states.transform *= getTransform();
   target.draw(sprite, states);
   target.draw(text, states);
+}
+
+sf::FloatRect gui::Button::getBounds() const {
+  return getTransform().transformRect(sprite.getGlobalBounds());
 }

@@ -29,3 +29,7 @@ void gui::Component::activate() {
 void gui::Component::deactivate() {
   isActive = false;
 }
+
+sf::FloatRect gui::Component::getBounds() const {
+  return sf::FloatRect();
+}
