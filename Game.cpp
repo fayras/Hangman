@@ -11,8 +11,12 @@ Game::Game()
       stateStack(State::Context(window, textures, fonts))
 {
   window.setFramerateLimit(30);
+  fonts.load(Fonts::ID::MAIN, "../assets/fonts/Roboto.ttf");
   textures.load(Textures::ID::ALPHABET, "../assets/textures/alphabet.png");
   textures.load(Textures::ID::TITLE_BG, "../assets/textures/title_bg.jpg");
+  textures.load(Textures::ID::BUTTON_NORMAL, "../assets/textures/buttons.png", sf::IntRect(0, 0, 200, 50));
+  textures.load(Textures::ID::BUTTON_SELECTED, "../assets/textures/buttons.png", sf::IntRect(0, 50, 200, 50));
+  textures.load(Textures::ID::BUTTON_PRESSED, "../assets/textures/buttons.png", sf::IntRect(0, 100, 200, 50));
 
   registerStates();
   stateStack.push(States::ID::TITLE);

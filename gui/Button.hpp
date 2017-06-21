@@ -4,6 +4,7 @@
 #include "Component.hpp"
 #include "../ResourceIdentifiers.hpp"
 #include "../ResourceHolder.hpp"
+#include "../State.hpp"
 
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>
@@ -19,7 +20,7 @@ namespace gui {
       typedef std::shared_ptr<Button> Ptr;
       typedef std::function<void()> Callback;
 
-      Button(const FontHolder& fonts, const TextureHolder& textures);
+      Button(State::Context context);
       void setCallback(Callback callback);
       void setText(const std::string& text);
       void setToggle(bool flag);

@@ -4,13 +4,13 @@
 #include <SFML/Graphics/RenderTarget.hpp>
 
 
-gui::Button::Button(const FontHolder &fonts, const TextureHolder &textures)
+gui::Button::Button(State::Context context)
   : callback(),
-    normalTexture(textures.get(Textures::ID::BUTTON_NORMAL)),
-    selectedTexture(textures.get(Textures::ID::BUTTON_SELECTED)),
-    pressedTexture(textures.get(Textures::ID::BUTTON_PRESSED)),
+    normalTexture(context.textures->get(Textures::ID::BUTTON_NORMAL)),
+    selectedTexture(context.textures->get(Textures::ID::BUTTON_SELECTED)),
+    pressedTexture(context.textures->get(Textures::ID::BUTTON_PRESSED)),
     sprite(),
-    text("", fonts.get(Fonts::ID::MAIN)),
+    text("", context.fonts->get(Fonts::ID::MAIN)),
     isToggle(false)
 {
   sprite.setTexture(normalTexture);

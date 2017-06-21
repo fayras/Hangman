@@ -2,6 +2,7 @@
 #define HANGMAN_TITLESTATE_HPP
 
 #include "State.hpp"
+#include "gui/Container.hpp"
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>
 
@@ -14,6 +15,7 @@ class TitleState : public State {
 
   private:
     sf::Sprite background;
+    gui::Container guiContainer;
 };
 
 

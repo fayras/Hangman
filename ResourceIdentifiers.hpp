@@ -17,6 +17,9 @@ namespace Textures
     ALPHABET,
     MANIKIN,
     TITLE_BG,
+    BUTTON_NORMAL,
+    BUTTON_SELECTED,
+    BUTTON_PRESSED
   };
 }
 
