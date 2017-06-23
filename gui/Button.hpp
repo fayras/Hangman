@@ -34,13 +34,13 @@ namespace gui {
       virtual void handleEvent(const sf::Event& event);
       virtual sf::FloatRect getBounds() const override ;
 
-    private:
+    protected:
       virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
       Callback callback;
-      const sf::Texture& normalTexture;
-      const sf::Texture& selectedTexture;
-      const sf::Texture& pressedTexture;
+      sf::Texture& normalTexture;
+      sf::Texture& selectedTexture;
+      sf::Texture& pressedTexture;
       sf::Sprite sprite;
       sf::Text text;
       bool isToggle;

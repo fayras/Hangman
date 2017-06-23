@@ -14,6 +14,7 @@ namespace gui {
       void pack(Component::Ptr component);
       virtual bool selectable() const;
       virtual void handleEvent(const sf::Event& event);
+      sf::FloatRect getBounds() const override;
 
     private:
       virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;

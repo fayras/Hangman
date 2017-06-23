@@ -8,17 +8,13 @@
 #include <SFML/Graphics/Text.hpp>
 #include <SFML/Window/Event.hpp>
 #include "SpriteNode.hpp"
+#include "gui/Button.hpp"
 
-class Letter : public SpriteNode {
+class Letter : public gui::Button {
   public:
-    Letter(char ch, const sf::Texture& texture, const sf::IntRect& textureRect);
-    bool intersects(int x, int y) const;
-    void setActive(bool active);
-    void highlight();
-    void unhighlight();
+    Letter(char ch, State::Context context, const sf::IntRect& textureRect);
 
   private:
-    bool isActive;
     char letter;
 };
 

@@ -43,6 +43,10 @@ void gui::Container::handleEvent(const sf::Event &event) {
         child->deselect();
       }
     }
+  } else if(event.type == sf::Event::MouseButtonPressed) {
+    if (hasSelection()) {
+      children[selectedChild]->activate();
+    }
   }
 }
 
@@ -94,4 +98,9 @@ void gui::Container::selectPrevious() {
 
   // Select that component
   select(prev);
+}
+
+sf::FloatRect gui::Container::getBounds() const {
+  // TODO: berechne Bounds anhand der Rects der Kinder.
+  return sf::FloatRect();
 }

@@ -4,6 +4,7 @@
 #include "State.hpp"
 #include "CommandQueue.hpp"
 #include "SceneNode.hpp"
+#include "LetterList.hpp"
 
 class GameState : public State {
   public:
@@ -14,9 +15,9 @@ class GameState : public State {
     bool handleEvent(const sf::Event &event) override;
 
   private:
-
     SceneNode sceneGraph;
     CommandQueue commandQueue;
+    LetterList letters;
 };
 
 
