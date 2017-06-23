@@ -15,7 +15,11 @@ LetterList::LetterList(State::Context context, CommandQueue& commandQueue)
         TEXTURE_OFFSET_TO_A + (c - 65) * TEXTURE_SIZE, 0, TEXTURE_SIZE, TEXTURE_SIZE
     )));
     l->setCallback([this] () {
+      Command command;
+      command.category = Category::GUESS;
+      command.action = [this] (SceneNode& node, sf::Time) {
 
+      };
     });
     if(counter >= CHARS_PER_ROW) {
       counter = 0;

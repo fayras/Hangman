@@ -39,13 +39,13 @@ sf::Transform SceneNode::getWorldTransform() const {
   return transform;
 }
 
-void SceneNode::onCommand(const Command &command) {
+void SceneNode::onCommand(const Command &command, sf::Time dt) {
   if(command.category & getCategory()) {
-    command.action(*this);
+    command.action(*this, dt);
   }
 
   for(Ptr& child : children) {
-    child->onCommand(command);
+    child->onCommand(command, dt);
   }
 }
 

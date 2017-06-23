@@ -24,7 +24,7 @@ void GameState::draw() {
 
 bool GameState::update(sf::Time dt) {
   while(!commandQueue.empty()) {
-    sceneGraph.onCommand(commandQueue.pop());
+    sceneGraph.onCommand(commandQueue.pop(), dt);
   }
 
   sceneGraph.update(dt);
