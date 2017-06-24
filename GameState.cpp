@@ -2,6 +2,7 @@
 #include "Word.hpp"
 #include "Manikin.hpp"
 #include "LetterList.hpp"
+#include "ResourceHolder.hpp"
 #include <SFML/Graphics/RenderWindow.hpp>
 
 GameState::GameState(StateStack &stack, const State::Context &context)
@@ -12,7 +13,7 @@ GameState::GameState(StateStack &stack, const State::Context &context)
   manikin->move(15, 600);
   sceneGraph.attachChild(std::move(manikin));
 
-  SceneNode::Ptr word(new Word("test"));
+  SceneNode::Ptr word(new Word("test", context.fonts->get(Fonts::ID::MAIN)));
   word->move(500, 200);
   sceneGraph.attachChild(std::move(word));
 }

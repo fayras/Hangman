@@ -8,15 +8,20 @@
 
 class Word : public SceneNode {
   public:
-    Word(std::string word);
-    bool exists(char ch);
-    void reveal(char ch);
+    Word(std::string word, const sf::Font& font);
+    void guess(char ch);
     bool finished() const;
 
   protected:
     void drawCurrent(sf::RenderTarget &target, sf::RenderStates states) const override;
 
+  public:
+    unsigned int getCategory() const override;
+
   private:
+    bool exists(char ch);
+    void reveal(char ch);
+
     std::string word;
     std::string orgWord;
     std::vector<size_t> revealed;
