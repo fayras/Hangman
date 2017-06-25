@@ -39,8 +39,10 @@ void gui::Container::handleEvent(const sf::Event &event) {
       if(transform.transformRect(child->getBounds()).contains(event.mouseMove.x, event.mouseMove.y)) {
         child->select();
         selectedChild = i;
+        break;
       } else {
         child->deselect();
+        selectedChild = -1;
       }
     }
   } else if(event.type == sf::Event::MouseButtonPressed) {

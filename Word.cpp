@@ -53,13 +53,20 @@ unsigned int Word::getCategory() const {
 }
 
 void Word::updateCurrent(sf::Time dt, CommandQueue &commands) {
-  Command command;
   for(char& guess : guesses) {
     if(exists(guess)) {
       reveal(guess);
+      Command command;
       command.category = Category::SOUND_EFFECT;
       command.action = derivedAction<SoundNode>([this] (SoundNode& node, sf::Time dt) {
         node.playSound(SoundEffect::ID::GUESS_RIGHT, getPosition());
+      });
+      commands.push(command);
+    } else {
+      Command command;
+      command.category = Category::SOUND_EFFECT;
+      command.action = derivedAction<SoundNode>([this] (SoundNode& node, sf::Time dt) {
+        node.playSound(SoundEffect::ID::GUESS_FAIL, getPosition());
       });
       commands.push(command);
     }

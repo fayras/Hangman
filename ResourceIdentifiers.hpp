@@ -29,7 +29,8 @@ namespace Fonts {
 namespace SoundEffect {
   enum ID {
     GUESS_RIGHT,
-    GUESS_FAIL
+    GUESS_FAIL,
+    SELECT
   };
 }
 
