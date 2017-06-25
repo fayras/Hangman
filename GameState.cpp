@@ -3,6 +3,7 @@
 #include "Manikin.hpp"
 #include "ResourceHolder.hpp"
 #include "Letter.hpp"
+#include "SoundNode.hpp"
 #include <SFML/Graphics/RenderWindow.hpp>
 
 const int CHARS_PER_ROW = 7;
@@ -24,6 +25,9 @@ GameState::GameState(StateStack &stack, const State::Context &context)
   SceneNode::Ptr word(new Word("test", context.fonts->get(Fonts::ID::MAIN)));
   word->move(500, 200);
   sceneGraph.attachChild(std::move(word));
+
+  std::unique_ptr<SoundNode> sound(new SoundNode(*context.sounds));
+  sceneGraph.attachChild(std::move(sound));
 }
 
 void GameState::draw() {

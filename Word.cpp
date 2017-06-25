@@ -61,6 +61,7 @@ void Word::updateCurrent(sf::Time dt, CommandQueue &commands) {
       command.action = derivedAction<SoundNode>([this] (SoundNode& node, sf::Time dt) {
         node.playSound(SoundEffect::ID::GUESS_RIGHT, getPosition());
       });
+      commands.push(command);
     }
   }
 
