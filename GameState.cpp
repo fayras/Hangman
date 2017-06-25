@@ -51,6 +51,18 @@ bool GameState::handleEvent(const sf::Event &event) {
   if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
     requestStackPush(States::ID::PAUSE);
 
+  if(event.type == sf::Event::TextEntered) {
+    if(event.key.code >= 65 && event.key.code <= 122) {
+      sf::Keyboard::Key key = event.key.code;
+      Command command;
+      command.category = Category::GUESS;
+      command.action = derivedAction<Word>([this, key] (Word& node, sf::Time) {
+        node.guess(static_cast<char>(::tolower(key)));
+      });
+      commandQueue.push(command);
+    }
+  }
+
   return true;
 }
 
@@ -64,11 +76,7 @@ void GameState::createLetters() {
       Command command;
       command.category = Category::GUESS;
       command.action = derivedAction<Word>([this, c] (Word& node, sf::Time) {
-        if(node.guess(static_cast<char>(c))) {
-
-        } else {
-
-        }
+        node.guess(static_cast<char>(c));
       });
       commandQueue.push(command);
     });

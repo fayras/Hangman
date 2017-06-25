@@ -9,7 +9,7 @@
 class Word : public SceneNode {
   public:
     Word(std::string word, const sf::Font& font);
-    bool guess(char ch);
+    void guess(char ch);
     bool finished() const;
 
   protected:

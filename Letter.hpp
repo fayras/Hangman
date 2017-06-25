@@ -13,13 +13,14 @@
 class Letter : public gui::Button {
   public:
     Letter(char ch, State::Context context, const sf::IntRect& textureRect);
-
     void select() override;
-
     void deselect() override;
+
+    void activate() override;
 
   private:
     char letter;
+    bool clicked;
 };
 
 #endif //HANGMAN_LETTER_HPP

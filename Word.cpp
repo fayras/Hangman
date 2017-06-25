@@ -27,7 +27,7 @@ void Word::drawCurrent(sf::RenderTarget &target, sf::RenderStates states) const 
   }
 }
 
-bool Word::guess(char ch) {
+void Word::guess(char ch) {
   //ch = (char) ::tolower(ch);
   guesses.push_back(ch);
 }
