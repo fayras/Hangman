@@ -4,12 +4,13 @@
 #include <SFML/Graphics.hpp>
 #include "Manikin.hpp"
 #include "Word.hpp"
-#include "LetterList.hpp"
 #include "SceneNode.hpp"
 #include "CommandQueue.hpp"
 #include "ResourceIdentifiers.hpp"
 #include "ResourceHolder.hpp"
 #include "StateStack.hpp"
+#include "MusicPlayer.hpp"
+#include "SoundPlayer.hpp"
 
 class Game {
   public:
@@ -29,6 +30,8 @@ class Game {
     StateStack stateStack;
     TextureHolder textures;
     FontHolder fonts;
+    MusicPlayer	music;
+    SoundPlayer	sounds;
 
     static const sf::Time	TimePerFrame;
 };

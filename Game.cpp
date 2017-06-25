@@ -8,7 +8,7 @@ const sf::Time Game::TimePerFrame = sf::seconds(1.f/60.f);
 Game::Game()
     : window(sf::VideoMode(1000, 740), "Hangman"),
       isPaused(false),
-      stateStack(State::Context(window, textures, fonts))
+      stateStack(State::Context(window, textures, fonts, music, sounds))
 {
   window.setFramerateLimit(30);
   fonts.load(Fonts::ID::MAIN, "../assets/fonts/Roboto.ttf");
