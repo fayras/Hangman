@@ -28,12 +28,7 @@ void Word::drawCurrent(sf::RenderTarget &target, sf::RenderStates states) const 
 
 bool Word::guess(char ch) {
   //ch = (char) ::tolower(ch);
-  if(exists(ch)) {
-    reveal(ch);
-    return true;
-  } else {
-    return false;
-  }
+  guesses.push_back(ch);
 }
 
 bool Word::exists(char ch) {
@@ -54,4 +49,14 @@ void Word::reveal(char ch) {
 
 unsigned int Word::getCategory() const {
   return Category::GUESS;
+}
+
+void Word::updateCurrent(sf::Time dt, CommandQueue &commands) {
+  for(char& guess : guesses) {
+    if(exists(guess)) {
+      reveal(guess);
+    }
+  }
+
+  guesses.clear();
 }

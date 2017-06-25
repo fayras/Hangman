@@ -13,6 +13,7 @@ class Word : public SceneNode {
     bool finished() const;
 
   protected:
+    void updateCurrent(sf::Time dt, CommandQueue &commands) override;
     void drawCurrent(sf::RenderTarget &target, sf::RenderStates states) const override;
 
   public:
@@ -25,7 +26,8 @@ class Word : public SceneNode {
     std::string word;
     std::string orgWord;
     std::vector<size_t> revealed;
-    sf::Font font;
+    std::vector<char> guesses;
+    const sf::Font& font;
 };
 
 #endif //HANGMAN_WORD_HPP
