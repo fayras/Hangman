@@ -2,18 +2,15 @@
 #define HANGMAN_RESOURCEIDENTIFIERS_HPP
 
 // Forward declaration of SFML classes
-namespace sf
-{
+namespace sf {
   class Texture;
   class Font;
   class Shader;
   class SoundBuffer;
 }
 
-namespace Textures
-{
-  enum ID
-  {
+namespace Textures {
+  enum ID {
     ALPHABET,
     MANIKIN,
     TITLE_BG,
@@ -23,26 +20,21 @@ namespace Textures
   };
 }
 
-namespace Fonts
-{
-  enum ID
-  {
+namespace Fonts {
+  enum ID {
     MAIN,
   };
 }
 
-namespace SoundEffect
-{
-  enum ID
-  {
-
+namespace SoundEffect {
+  enum ID {
+    GUESS_RIGHT,
+    GUESS_FAIL
   };
 }
 
-namespace Music
-{
-  enum ID
-  {
+namespace Music {
+  enum ID {
     TITLE,
     GAME,
     WIN,

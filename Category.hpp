@@ -10,6 +10,7 @@ namespace Category {
     GUESS = 1 << 3,
     GUESS_FAIL = 1 << 4,
     GUESS_SUCESS = 1 << 5,
+    SOUND_EFFECT = 1 << 6,
   };
 }
 

@@ -1,4 +1,5 @@
 #include "Word.hpp"
+#include "SoundNode.hpp"
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Graphics/Text.hpp>
 #include <SFML/Graphics/RectangleShape.hpp>
@@ -52,9 +53,14 @@ unsigned int Word::getCategory() const {
 }
 
 void Word::updateCurrent(sf::Time dt, CommandQueue &commands) {
+  Command command;
   for(char& guess : guesses) {
     if(exists(guess)) {
       reveal(guess);
+      command.category = Category::SOUND_EFFECT;
+      command.action = derivedAction<SoundNode>([this] (SoundNode& node, sf::Time dt) {
+        node.playSound(SoundEffect::ID::GUESS_RIGHT, getPosition());
+      });
     }
   }
 
