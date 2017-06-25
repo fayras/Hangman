@@ -4,9 +4,11 @@
 State::Context::Context(
   sf::RenderWindow& window, 
   TextureHolder& textures, 
-  FontHolder& fonts
+  FontHolder& fonts,
+  MusicPlayer& music,
+  SoundPlayer& sounds
 ) 
-  : window(&window), textures(&textures), fonts(&fonts)
+  : window(&window), textures(&textures), fonts(&fonts), music(&music), sounds(&sounds)
 {} 
 
 State::State(StateStack& stack, Context context) 

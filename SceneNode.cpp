@@ -3,8 +3,8 @@
 #include "Command.hpp"
 #include <cassert>
 
-SceneNode::SceneNode()
-  : children(), parent(nullptr)
+SceneNode::SceneNode(Category::Type category)
+  : children(), parent(nullptr), defaultCategory(category)
 {}
 
 void SceneNode::attachChild(SceneNode::Ptr child) {
@@ -50,21 +50,21 @@ void SceneNode::onCommand(const Command &command, sf::Time dt) {
 }
 
 unsigned int SceneNode::getCategory() const {
-  return Category::SCENE;
+  return defaultCategory;
 }
 
-void SceneNode::update(sf::Time dt) {
-  updateCurrent(dt);
-  updateChildren(dt);
+void SceneNode::update(sf::Time dt, CommandQueue& commands) {
+  updateCurrent(dt, commands);
+  updateChildren(dt, commands);
 }
 
-void SceneNode::updateCurrent(sf::Time dt) {
+void SceneNode::updateCurrent(sf::Time dt, CommandQueue& commands) {
   // do nothing by default
 }
 
-void SceneNode::updateChildren(sf::Time dt) {
+void SceneNode::updateChildren(sf::Time dt, CommandQueue& commands) {
   for(Ptr& child : children) {
-    child->update(dt);
+    child->update(dt, commands);
   }
 }
 

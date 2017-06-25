@@ -5,17 +5,13 @@
 #include <SFML/Graphics/Shape.hpp>
 #include <vector>
 #include <memory>
-#include "SceneNode.hpp"
+#include "SpriteNode.hpp"
 
-class Manikin : public SceneNode {
+class Manikin : public SpriteNode {
   public:
-    Manikin();
-    void next();
-    bool alive() const;
+    Manikin(const sf::Texture& texture);
 
-  private:
-    std::vector<std::unique_ptr<sf::Shape>> parts;
-    size_t attempts;
+    unsigned int getCategory() const override;
 };
 
 #endif //HANGMAN_MANIKIN_HPP

@@ -26,12 +26,13 @@ void Word::drawCurrent(sf::RenderTarget &target, sf::RenderStates states) const 
   }
 }
 
-void Word::guess(char ch) {
+bool Word::guess(char ch) {
   //ch = (char) ::tolower(ch);
   if(exists(ch)) {
     reveal(ch);
+    return true;
   } else {
-
+    return false;
   }
 }
 

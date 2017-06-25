@@ -57,7 +57,7 @@ class StateStack : private sf::NonCopyable {
 
 template <typename T>
 void StateStack::registerState(States::ID id) {
-  factory[id] = [this] () {
+  factory[id] = [this] () -> State::Ptr {
     return State::Ptr(new T(*this, context));
   };
 }
