@@ -12,7 +12,7 @@ const int TEXTURE_OFFSET_TO_A = 1320;
 GameState::GameState(StateStack &stack, const State::Context &context)
     : State(stack, context)
 {
-  context.textures->load(Textures::ID::MANIKIN, "../assets/textures/manakin1.png");
+  context.textures->load(Textures::ID::MANIKIN, "../assets/textures/manikin1.png");
 
   letters.move(500, 400);
   createLetters();
@@ -56,7 +56,7 @@ void GameState::createLetters() {
     std::unique_ptr<Letter> l(new Letter(static_cast<char>(c), context, sf::IntRect(
         TEXTURE_OFFSET_TO_A + (c - 97) * TEXTURE_SIZE, 0, TEXTURE_SIZE, TEXTURE_SIZE
     )));
-    l->setCallback([this, c, &commandQueue] () {
+    l->setCallback([this, c] () {
       Command command;
       command.category = Category::GUESS;
       command.action = derivedAction<Word>([this, c] (Word& node, sf::Time) {
