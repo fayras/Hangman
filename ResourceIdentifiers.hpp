@@ -33,7 +33,9 @@ namespace SoundEffect {
   enum ID {
     GUESS_RIGHT,
     GUESS_FAIL,
-    SELECT
+    SELECT,
+    FAIL,
+    WIN
   };
 }
 

@@ -1,5 +1,7 @@
 #include "GameOverState.hpp"
 #include "gui/Button.hpp"
+#include "MusicPlayer.hpp"
+#include "SoundPlayer.hpp"
 
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
@@ -37,6 +39,13 @@ GameOverState::GameOverState(StateStack &stack, const State::Context &context, T
 
   guiContainer.pack(returnButton);
   guiContainer.pack(backToMenuButton);
+
+  if(type == Type::WIN) {
+    context.sounds->play(SoundEffect::WIN);
+  } else {
+    context.sounds->play(SoundEffect::FAIL);
+  }
+  context.music->stop();
 }
 
 void GameOverState::draw() {

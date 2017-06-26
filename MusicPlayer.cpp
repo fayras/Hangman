@@ -3,7 +3,7 @@
 MusicPlayer::MusicPlayer()
   : music(), filenames(), volume(100.f)
 {
-  //filenames[Music::MenuTheme]    = "Media/Music/MenuTheme.ogg";
+  filenames[Music::GAME] = "../assets/music/game_theme.wav";
 }
 
 void MusicPlayer::play(Music::ID theme) {

@@ -4,6 +4,7 @@
 #include "ResourceHolder.hpp"
 #include "Letter.hpp"
 #include "SoundNode.hpp"
+#include "MusicPlayer.hpp"
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <fstream>
 #include <iostream>
@@ -57,6 +58,8 @@ GameState::GameState(StateStack &stack, const State::Context &context)
 
   std::unique_ptr<SoundNode> sound(new SoundNode(*context.sounds));
   sceneGraph.attachChild(std::move(sound));
+
+  context.music->play(Music::GAME);
 }
 
 void GameState::draw() {
