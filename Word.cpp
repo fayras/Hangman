@@ -14,20 +14,22 @@ Word::Word(std::string pWord, const sf::Font& font)
 }
 
 void Word::drawCurrent(sf::RenderTarget &target, sf::RenderStates states) const {
+  int leftOffset = (int) orgWord.length() * 25;
   sf::RectangleShape bg(sf::Vector2f(orgWord.length() * 50, 50));
   bg.setFillColor(sf::Color(0, 0, 0, 100));
+  bg.move(-leftOffset, 0);
   target.draw(bg, states);
 
   for(int i = 0; i < orgWord.length(); i++) {
     if(orgWord[i] != ' ') {
       sf::RectangleShape us(sf::Vector2f(35, 2));
-      us.move(i * 50 + 7, 40);
+      us.move(i * 50 + 7 - leftOffset, 40);
       target.draw(us, states);
     }
   }
   for(const auto& r : revealed) {
     sf::Text txt(orgWord[r], font);
-    txt.move(r * 50 + 14, 0);
+    txt.move(r * 50 + 14 - leftOffset, 0);
     target.draw(txt, states);
   }
 }
@@ -42,7 +44,7 @@ bool Word::exists(char ch) {
 }
 
 bool Word::finished() const {
-  return revealed.size() == word.length();
+  return revealed.size() >= word.length();
 }
 
 void Word::reveal(char ch) {

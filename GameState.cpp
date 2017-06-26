@@ -5,16 +5,42 @@
 #include "Letter.hpp"
 #include "SoundNode.hpp"
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <fstream>
+#include <iostream>
 
 const int CHARS_PER_ROW = 7;
 const int TEXTURE_SIZE = 40;
 const int TEXTURE_OFFSET_TO_A = 1320;
+
+namespace {
+  std::default_random_engine createRandomEngine() {
+    auto seed = static_cast<unsigned long>(std::time(nullptr));
+    return std::default_random_engine(seed);
+  }
+  auto RandomEngine = createRandomEngine();
+}
 
 GameState::GameState(StateStack &stack, const State::Context &context)
     : State(stack, context)
 {
   letters.move(500, 400);
   createLetters();
+
+  std::ifstream inFile("../assets/dict.txt");
+  unsigned lineCount = (unsigned) std::count(std::istreambuf_iterator<char>(inFile), std::istreambuf_iterator<char>(), '\n');
+  std::uniform_int_distribution<> distr(0, lineCount - 1);
+  unsigned lineNum = (unsigned) distr(RandomEngine);
+  std::string line;
+
+  if (inFile.is_open()) {
+    inFile.clear();
+    inFile.seekg(0, inFile.beg);
+    for(unsigned l = 0; !inFile.eof(); l++) {
+      std::getline(inFile, line);
+      if(l == lineNum) break;
+    }
+    inFile.close();
+  }
 
   SceneNode::Ptr bg(new SpriteNode(context.textures->get(Textures::ID::GAME_BG)));
   sceneGraph.attachChild(std::move(bg));
@@ -24,9 +50,9 @@ GameState::GameState(StateStack &stack, const State::Context &context)
   mk->move(15, 160);
   sceneGraph.attachChild(std::move(mk));
 
-  word = new Word("Hangman", context.fonts->get(Fonts::ID::MAIN));
+  word = new Word(line, context.fonts->get(Fonts::ID::MAIN));
   SceneNode::Ptr wrd(word);
-  wrd->move(500, 200);
+  wrd->move(context.window->getSize().x * 0.5f, 100);
   sceneGraph.attachChild(std::move(wrd));
 
   std::unique_ptr<SoundNode> sound(new SoundNode(*context.sounds));
