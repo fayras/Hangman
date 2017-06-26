@@ -13,16 +13,20 @@ const int TEXTURE_OFFSET_TO_A = 1320;
 GameState::GameState(StateStack &stack, const State::Context &context)
     : State(stack, context)
 {
-  context.textures->load(Textures::ID::MANIKIN, "../assets/textures/manikin1.png");
+  context.textures->load(Textures::ID::MANIKIN, "../assets/textures/manikin.png");
+  context.textures->load(Textures::ID::GAME_BG, "../assets/textures/game_bg.png");
 
   letters.move(500, 400);
   createLetters();
 
+  SceneNode::Ptr bg(new SpriteNode(context.textures->get(Textures::ID::GAME_BG)));
+  sceneGraph.attachChild(std::move(bg));
+
   SceneNode::Ptr manikin(new Manikin(context.textures->get(Textures::ID::MANIKIN)));
-  manikin->move(15, 600);
+  manikin->move(15, 160);
   sceneGraph.attachChild(std::move(manikin));
 
-  SceneNode::Ptr word(new Word("test", context.fonts->get(Fonts::ID::MAIN)));
+  SceneNode::Ptr word(new Word("Hangman", context.fonts->get(Fonts::ID::MAIN)));
   word->move(500, 200);
   sceneGraph.attachChild(std::move(word));
 

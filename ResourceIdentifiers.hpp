@@ -14,6 +14,7 @@ namespace Textures {
     ALPHABET,
     MANIKIN,
     TITLE_BG,
+    GAME_BG,
     BUTTON_NORMAL,
     BUTTON_SELECTED,
     BUTTON_PRESSED

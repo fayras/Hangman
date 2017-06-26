@@ -31,4 +31,5 @@ void Letter::activate() {
   sf::IntRect rect = sprite.getTextureRect();
   rect.top = rect.top + 40;
   sprite.setTextureRect(rect);
+  deselect();
 }

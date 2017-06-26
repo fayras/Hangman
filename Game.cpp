@@ -30,8 +30,9 @@ void Game::run() {
     timeSinceLastUpdate += dt;
     while (timeSinceLastUpdate > TimePerFrame) {
       timeSinceLastUpdate -= TimePerFrame;
+
+      processEvents();
       if(!isPaused) {
-        processEvents();
         update(TimePerFrame);
       }
 
@@ -46,7 +47,9 @@ void Game::run() {
 void Game::processEvents() {
   sf::Event event;
   while (window.pollEvent(event)) {
-    stateStack.handleEvent(event);
+
+    if(!isPaused) stateStack.handleEvent(event);
+
     switch (event.type) {
       case sf::Event::GainedFocus:
         isPaused = false;

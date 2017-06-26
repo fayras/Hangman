@@ -10,8 +10,15 @@
 class Manikin : public SpriteNode {
   public:
     Manikin(const sf::Texture& texture);
-
     unsigned int getCategory() const override;
+    void advance();
+
+  protected:
+    void updateCurrent(sf::Time dt, CommandQueue &commands) override;
+
+  private:
+    unsigned int maxAttempts;
+    unsigned int attempts;
 };
 
 #endif //HANGMAN_MANIKIN_HPP

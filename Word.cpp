@@ -1,5 +1,6 @@
 #include "Word.hpp"
 #include "SoundNode.hpp"
+#include "Manikin.hpp"
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Graphics/Text.hpp>
 #include <SFML/Graphics/RectangleShape.hpp>
@@ -13,16 +14,20 @@ Word::Word(std::string pWord, const sf::Font& font)
 }
 
 void Word::drawCurrent(sf::RenderTarget &target, sf::RenderStates states) const {
+  sf::RectangleShape bg(sf::Vector2f(orgWord.length() * 50, 50));
+  bg.setFillColor(sf::Color(0, 0, 0, 100));
+  target.draw(bg, states);
+
   for(int i = 0; i < orgWord.length(); i++) {
     if(orgWord[i] != ' ') {
       sf::RectangleShape us(sf::Vector2f(35, 2));
-      us.move(i * 50, 40);
+      us.move(i * 50 + 7, 40);
       target.draw(us, states);
     }
   }
   for(const auto& r : revealed) {
     sf::Text txt(orgWord[r], font);
-    txt.move(r * 50 + 10, 0);
+    txt.move(r * 50 + 14, 0);
     target.draw(txt, states);
   }
 }
@@ -69,6 +74,13 @@ void Word::updateCurrent(sf::Time dt, CommandQueue &commands) {
         node.playSound(SoundEffect::ID::GUESS_FAIL, getPosition());
       });
       commands.push(command);
+
+      Command command2;
+      command2.category = Category::MANIKIN;
+      command2.action = derivedAction<Manikin>([] (Manikin& manikin, sf::Time dt) {
+        manikin.advance();
+      });
+      commands.push(command2);
     }
   }
 
