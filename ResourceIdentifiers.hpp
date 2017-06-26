@@ -17,7 +17,9 @@ namespace Textures {
     GAME_BG,
     BUTTON_NORMAL,
     BUTTON_SELECTED,
-    BUTTON_PRESSED
+    BUTTON_PRESSED,
+    GAME_LOSE,
+    GAME_WIN
   };
 }
 

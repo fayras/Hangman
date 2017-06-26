@@ -20,6 +20,8 @@ Game::Game()
   textures.load(Textures::ID::BUTTON_PRESSED, "../assets/textures/buttons.png", sf::IntRect(0, 100, 200, 50));
   textures.load(Textures::ID::MANIKIN, "../assets/textures/manikin.png");
   textures.load(Textures::ID::GAME_BG, "../assets/textures/game_bg.png");
+  textures.load(Textures::ID::GAME_LOSE, "../assets/textures/you_lose.png");
+  textures.load(Textures::ID::GAME_WIN, "../assets/textures/you_win.png");
 
   registerStates();
   stateStack.push(States::ID::TITLE);
@@ -83,5 +85,6 @@ void Game::render() {
 void Game::registerStates() {
   stateStack.registerState<TitleState>(States::ID::TITLE);
   stateStack.registerState<GameState>(States::ID::GAME);
-  stateStack.registerState<GameOverState>(States::ID::GAME_OVER);
+  stateStack.registerState<GameOverState>(States::ID::GAME_OVER, GameOverState::Type::LOSE);
+  stateStack.registerState<GameOverState>(States::ID::GAME_OVER_WIN, GameOverState::Type::WIN);
 }

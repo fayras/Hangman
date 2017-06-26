@@ -30,8 +30,8 @@ class StateStack : private sf::NonCopyable {
     void draw();
     void handleEvent(const sf::Event& event);
 
-    template<typename T>
-    void registerState(States::ID stateID);
+    template<typename T, typename... Args>
+    void registerState(States::ID stateID, Args&&... args);
     void push(States::ID stateID);
     void pop();
     void clear();
@@ -55,10 +55,10 @@ class StateStack : private sf::NonCopyable {
     std::map<States::ID, std::function<State::Ptr()>> factory;
 };
 
-template <typename T>
-void StateStack::registerState(States::ID id) {
-  factory[id] = [this] () -> State::Ptr {
-    return State::Ptr(new T(*this, context));
+template <typename T, typename... Args>
+void StateStack::registerState(States::ID id, Args&&... args) {
+  factory[id] = [this, args...] () -> State::Ptr {
+    return State::Ptr(new T(*this, context, args...));
   };
 }
 

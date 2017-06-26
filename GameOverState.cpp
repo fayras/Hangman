@@ -5,10 +5,19 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/View.hpp>
 
-GameOverState::GameOverState(StateStack &stack, const State::Context &context)
-  : State(stack, context)
+GameOverState::GameOverState(StateStack &stack, const State::Context &context, Type type)
+  : State(stack, context), sprite()
 {
   sf::Vector2f windowSize(context.window->getSize());
+
+  if(type == Type::WIN) {
+    sprite.setTexture(context.textures->get(Textures::ID::GAME_WIN));
+  } else {
+    sprite.setTexture(context.textures->get(Textures::ID::GAME_LOSE));
+  }
+  sf::FloatRect bounds = sprite.getLocalBounds();
+  sprite.setOrigin(std::floor(bounds.left + bounds.width / 2.f), std::floor(bounds.top + bounds.height / 2.f));
+  sprite.setPosition(0.5f * windowSize.x, 0.2f * windowSize.y);
 
   auto returnButton = std::make_shared<gui::Button>(context);
   returnButton->setPosition(0.5f * windowSize.x - 100, 0.4f * windowSize.y + 55);
@@ -40,6 +49,7 @@ void GameOverState::draw() {
 
   window.draw(backgroundShape);
   window.draw(guiContainer);
+  window.draw(sprite);
 }
 
 bool GameOverState::update(sf::Time dt) {
