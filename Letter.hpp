@@ -12,10 +12,9 @@
 
 class Letter : public gui::Button {
   public:
-    Letter(char ch, State::Context context, const sf::IntRect& textureRect);
+    explicit Letter(char ch, State::Context context, const sf::IntRect& textureRect);
     void select() override;
     void deselect() override;
-
     void activate() override;
 
   private:

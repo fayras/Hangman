@@ -13,9 +13,6 @@ const int TEXTURE_OFFSET_TO_A = 1320;
 GameState::GameState(StateStack &stack, const State::Context &context)
     : State(stack, context)
 {
-  context.textures->load(Textures::ID::MANIKIN, "../assets/textures/manikin.png");
-  context.textures->load(Textures::ID::GAME_BG, "../assets/textures/game_bg.png");
-
   letters.move(500, 400);
   createLetters();
 
@@ -48,12 +45,10 @@ bool GameState::update(sf::Time dt) {
   sceneGraph.update(dt, commandQueue);
 
   if(manikin->dead()) {
-    requestStackPop();
     requestStackPush(States::ID::GAME_OVER);
   }
 
   if(word->finished()) {
-    requestStackPop();
     requestStackPush(States::ID::GAME_OVER_WIN);
   }
 

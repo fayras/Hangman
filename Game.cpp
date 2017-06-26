@@ -2,6 +2,7 @@
 #include "Game.hpp"
 #include "GameState.hpp"
 #include "TitleState.hpp"
+#include "GameOverState.hpp"
 
 const sf::Time Game::TimePerFrame = sf::seconds(1.f/60.f);
 
@@ -17,6 +18,8 @@ Game::Game()
   textures.load(Textures::ID::BUTTON_NORMAL, "../assets/textures/buttons.png", sf::IntRect(0, 0, 200, 50));
   textures.load(Textures::ID::BUTTON_SELECTED, "../assets/textures/buttons.png", sf::IntRect(0, 50, 200, 50));
   textures.load(Textures::ID::BUTTON_PRESSED, "../assets/textures/buttons.png", sf::IntRect(0, 100, 200, 50));
+  textures.load(Textures::ID::MANIKIN, "../assets/textures/manikin.png");
+  textures.load(Textures::ID::GAME_BG, "../assets/textures/game_bg.png");
 
   registerStates();
   stateStack.push(States::ID::TITLE);
@@ -80,4 +83,5 @@ void Game::render() {
 void Game::registerStates() {
   stateStack.registerState<TitleState>(States::ID::TITLE);
   stateStack.registerState<GameState>(States::ID::GAME);
+  stateStack.registerState<GameOverState>(States::ID::GAME_OVER);
 }
