@@ -6,6 +6,9 @@
 #include "SceneNode.hpp"
 #include "gui/Container.hpp"
 
+class Manikin;
+class Word;
+
 class GameState : public State {
   public:
     GameState(StateStack &stack, const Context &context);
@@ -20,6 +23,8 @@ class GameState : public State {
     SceneNode sceneGraph;
     CommandQueue commandQueue;
     gui::Container letters;
+    Manikin* manikin;
+    Word* word;
 };
 
 

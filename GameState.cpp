@@ -22,13 +22,15 @@ GameState::GameState(StateStack &stack, const State::Context &context)
   SceneNode::Ptr bg(new SpriteNode(context.textures->get(Textures::ID::GAME_BG)));
   sceneGraph.attachChild(std::move(bg));
 
-  SceneNode::Ptr manikin(new Manikin(context.textures->get(Textures::ID::MANIKIN)));
-  manikin->move(15, 160);
-  sceneGraph.attachChild(std::move(manikin));
+  manikin = new Manikin(context.textures->get(Textures::ID::MANIKIN));
+  SceneNode::Ptr mk(manikin);
+  mk->move(15, 160);
+  sceneGraph.attachChild(std::move(mk));
 
-  SceneNode::Ptr word(new Word("Hangman", context.fonts->get(Fonts::ID::MAIN)));
-  word->move(500, 200);
-  sceneGraph.attachChild(std::move(word));
+  word = new Word("Hangman", context.fonts->get(Fonts::ID::MAIN));
+  SceneNode::Ptr wrd(word);
+  wrd->move(500, 200);
+  sceneGraph.attachChild(std::move(wrd));
 
   std::unique_ptr<SoundNode> sound(new SoundNode(*context.sounds));
   sceneGraph.attachChild(std::move(sound));
@@ -44,6 +46,16 @@ bool GameState::update(sf::Time dt) {
     sceneGraph.onCommand(commandQueue.pop(), dt);
   }
   sceneGraph.update(dt, commandQueue);
+
+  if(manikin->dead()) {
+    requestStackPop();
+    requestStackPush(States::ID::GAME_OVER);
+  }
+
+  if(word->finished()) {
+    requestStackPop();
+    requestStackPush(States::ID::GAME_OVER_WIN);
+  }
 
   return true;
 }

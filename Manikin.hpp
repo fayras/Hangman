@@ -12,6 +12,7 @@ class Manikin : public SpriteNode {
     Manikin(const sf::Texture& texture);
     unsigned int getCategory() const override;
     void advance();
+    bool dead() const;
 
   protected:
     void updateCurrent(sf::Time dt, CommandQueue &commands) override;

@@ -4,7 +4,7 @@
 #include "Manikin.hpp"
 
 Manikin::Manikin(const sf::Texture& texture)
-    : SpriteNode(texture, sf::IntRect(0, 0, 400, 500)), attempts(0), maxAttempts(10)
+    : SpriteNode(texture, sf::IntRect(0, 0, 400, 500)), attempts(1), maxAttempts(10)
 {}
 
 unsigned int Manikin::getCategory() const {
@@ -19,7 +19,9 @@ void Manikin::advance() {
 }
 
 void Manikin::updateCurrent(sf::Time dt, CommandQueue &commands) {
-  if(attempts >= maxAttempts) {
 
-  }
+}
+
+bool Manikin::dead() const {
+  return attempts >= maxAttempts;
 }

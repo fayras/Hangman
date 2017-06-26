@@ -6,7 +6,9 @@ namespace States {
     NONE,
     TITLE,
     GAME,
-    PAUSE
+    PAUSE,
+    GAME_OVER,
+    GAME_OVER_WIN,
   };
 }
 
