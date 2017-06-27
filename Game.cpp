@@ -3,6 +3,7 @@
 #include "GameState.hpp"
 #include "TitleState.hpp"
 #include "GameOverState.hpp"
+#include "PauseState.hpp"
 
 const sf::Time Game::TimePerFrame = sf::seconds(1.f/60.f);
 
@@ -85,6 +86,7 @@ void Game::render() {
 void Game::registerStates() {
   stateStack.registerState<TitleState>(States::ID::TITLE);
   stateStack.registerState<GameState>(States::ID::GAME);
+  stateStack.registerState<PauseState>(States::ID::PAUSE);
   stateStack.registerState<GameOverState>(States::ID::GAME_OVER, GameOverState::Type::LOSE);
   stateStack.registerState<GameOverState>(States::ID::GAME_OVER_WIN, GameOverState::Type::WIN);
 }
