@@ -7,6 +7,11 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
 SET(CMAKE_INSTALL_RPATH "$ORIGIN/lib:$ORIGIN/")
 
+# Set default build type explicitly to Release
+if (NOT CMAKE_BUILD_TYPE)
+    set (CMAKE_BUILD_TYPE "Release")
+endif (NOT CMAKE_BUILD_TYPE)
+
 find_package(SFML 2 REQUIRED COMPONENTS audio graphics window system)
 include_directories(${SFML_INCLUDE_DIR})
 
