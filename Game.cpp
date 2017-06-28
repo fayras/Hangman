@@ -13,16 +13,16 @@ Game::Game()
       stateStack(State::Context(window, textures, fonts, music, sounds))
 {
   window.setFramerateLimit(30);
-  fonts.load(Fonts::ID::MAIN, "../assets/fonts/Roboto.ttf");
-  textures.load(Textures::ID::ALPHABET, "../assets/textures/alphabet.png");
-  textures.load(Textures::ID::TITLE_BG, "../assets/textures/title_bg.jpg");
-  textures.load(Textures::ID::BUTTON_NORMAL, "../assets/textures/buttons.png", sf::IntRect(0, 0, 200, 50));
-  textures.load(Textures::ID::BUTTON_SELECTED, "../assets/textures/buttons.png", sf::IntRect(0, 50, 200, 50));
-  textures.load(Textures::ID::BUTTON_PRESSED, "../assets/textures/buttons.png", sf::IntRect(0, 100, 200, 50));
-  textures.load(Textures::ID::MANIKIN, "../assets/textures/manikin.png");
-  textures.load(Textures::ID::GAME_BG, "../assets/textures/game_bg.png");
-  textures.load(Textures::ID::GAME_LOSE, "../assets/textures/you_lose.png");
-  textures.load(Textures::ID::GAME_WIN, "../assets/textures/you_win.png");
+  fonts.load(Fonts::ID::MAIN, "./assets/fonts/Roboto.ttf");
+  textures.load(Textures::ID::ALPHABET, "./assets/textures/alphabet.png");
+  textures.load(Textures::ID::TITLE_BG, "./assets/textures/title_bg.jpg");
+  textures.load(Textures::ID::BUTTON_NORMAL, "./assets/textures/buttons.png", sf::IntRect(0, 0, 200, 50));
+  textures.load(Textures::ID::BUTTON_SELECTED, "./assets/textures/buttons.png", sf::IntRect(0, 50, 200, 50));
+  textures.load(Textures::ID::BUTTON_PRESSED, "./assets/textures/buttons.png", sf::IntRect(0, 100, 200, 50));
+  textures.load(Textures::ID::MANIKIN, "./assets/textures/manikin.png");
+  textures.load(Textures::ID::GAME_BG, "./assets/textures/game_bg.png");
+  textures.load(Textures::ID::GAME_LOSE, "./assets/textures/you_lose.png");
+  textures.load(Textures::ID::GAME_WIN, "./assets/textures/you_win.png");
 
   registerStates();
   stateStack.push(States::ID::TITLE);

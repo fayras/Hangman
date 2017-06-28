@@ -27,7 +27,7 @@ GameState::GameState(StateStack &stack, const State::Context &context)
   letters.move(500, 400);
   createLetters();
 
-  std::ifstream inFile("../assets/dict.txt");
+  std::ifstream inFile("./assets/dict.txt");
   unsigned lineCount = (unsigned) std::count(std::istreambuf_iterator<char>(inFile), std::istreambuf_iterator<char>(), '\n');
   std::uniform_int_distribution<> distr(0, lineCount - 1);
   unsigned lineNum = (unsigned) distr(RandomEngine);

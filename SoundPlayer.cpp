@@ -14,11 +14,11 @@ namespace {
 SoundPlayer::SoundPlayer()
   : soundBuffers(), sounds()
 {
-  soundBuffers.load(SoundEffect::GUESS_RIGHT,	"../assets/sounds/win.wav");
-  soundBuffers.load(SoundEffect::GUESS_FAIL,	"../assets/sounds/fail.wav");
-  soundBuffers.load(SoundEffect::SELECT,	"../assets/sounds/select.wav");
-  soundBuffers.load(SoundEffect::FAIL,	"../assets/sounds/sad_trombone.wav");
-  soundBuffers.load(SoundEffect::WIN,	"../assets/sounds/victory.wav");
+  soundBuffers.load(SoundEffect::GUESS_RIGHT,	"./assets/sounds/win.wav");
+  soundBuffers.load(SoundEffect::GUESS_FAIL,	"./assets/sounds/fail.wav");
+  soundBuffers.load(SoundEffect::SELECT,	"./assets/sounds/select.wav");
+  soundBuffers.load(SoundEffect::FAIL,	"./assets/sounds/sad_trombone.wav");
+  soundBuffers.load(SoundEffect::WIN,	"./assets/sounds/victory.wav");
 
   // Listener points towards the screen (default in SFML)
   sf::Listener::setDirection(0.f, 0.f, -1.f);
